@@ -1,39 +1,28 @@
- 
- import 'dart:io';
+import 'dart:io';
 
 void main(){
+  print("welcome");
+  var tasks = <String>[];
 
-  int value =4 ;
+  String path = Directory.current.path;
 
-  if(value !=4 || !value.isEven){
-    print("not four or even");
+  var file = File(path+"/tasks.txt");
 
+  if (file.existsSync()) {
+    print("file exist");
+    tasks = file.readAsLinesSync();
   }
   else{
-    print("4");
+
+    print("file doesn't exist");
+    try {
+      file.createSync(); 
+      print("File created");
+  } catch (e) {
+    print("Error creating file: $e");
+  }
   }
 
-
-
- }
-
-  abstract class LivingThing{
-
-  }
-
-  class Dog extends LivingThing{
-
-  }
-  
-
- class Student extends LivingThing{ 
-   String name;
-   int age;
-   
-   Student(this.name, this.age);
-
-   @override
-   String toString()=> "student: $name $age";
-   
+  print(tasks);
 
 }
