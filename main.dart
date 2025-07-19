@@ -3,9 +3,15 @@
 
 void main(){
 
-  print("Enter your name");
-  String? name = stdin.readLineSync();  
-  print("hi $name");
+  int value =4 ;
+
+  if(value !=4 || !value.isEven){
+    print("not four or even");
+
+  }
+  else{
+    print("4");
+  }
 
 
 

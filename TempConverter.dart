@@ -1,24 +1,58 @@
 
 import 'dart:io';
+import 'dart:math';
 
 void main(){
+  print("Welcome \nEnter the temperature value");
 
-  print("Welcome \nEnter the teperature value");
-  String? read = (stdin.readLineSync());
+  try {
+    String? input = stdin.readLineSync();
 
-  if (read != null) {
-    try {
-      double temp = double.parse(read);
-      print("You entered: $temp");
-      
-    } on FormatException {
-      print("Invalid input. Please enter a valid number.");
+    if (input!= null) {
+      double temp = double.parse(input);
+  
+      stdout.writeln("Convert to :\n1 : Fahrenheit \n2 : Celsius");
+
+      String? read = (stdin.readLineSync());
+      var choice = int.parse(read ??"");
+    
+      while (choice !=1 && choice !=2) {
+
+        stdout.writeln("Invalid input\n enter again") ;
+        read = stdin.readLineSync();
+        choice = int.parse(read ??"");
+
+      }
+
+      if (choice ==1) {
+        print( toFahrenheit(value: temp));
+      }
+      else{
+        print(toCelsius(value: temp));
+      }
+
     }
-  } else {
-    print("No input received.");
+    else {
+      print("value of read is null");
+    }
+
+
+  } 
+  on FormatException catch (f) {
+    print(f);
   }
+  on StdinException catch(e){
+    print(e);
+  } 
 }
 
+double toCelsius({required double value}){
+  return (value - 32) * (5/9);
+}
+
+double toFahrenheit({required double value}){
+  return (((9*value)/5) + 32) ;
+}
 
 
 
