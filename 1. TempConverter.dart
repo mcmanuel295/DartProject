@@ -1,6 +1,5 @@
 
 import 'dart:io';
-import 'dart:math';
 
 void main(){
   print("Welcome \nEnter the temperature value");
