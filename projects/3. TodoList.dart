@@ -58,8 +58,13 @@ void main(){
       case 'v': {
           print("TASKS VIEW");
         
-        for (var task in newList) {
-          print(task);
+        if (newList.isNotEmpty) {
+          for (var task in newList) {
+            print(task);
+          }
+        }
+        else{
+          print("Todo list is empty");
         }
 
         stdout.writeln("\n");
