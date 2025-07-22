@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:math';
 
 void main(){
   String path = "./text2.txt";
