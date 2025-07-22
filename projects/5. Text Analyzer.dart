@@ -1,17 +1,19 @@
 import 'dart:io';
+import 'dart:math';
 
-void mains(){
-  String path = "./text.txt";
+void main(){
+  String path = "./text2.txt";
   File file =File(path);
   
   int wordCount = 0;
   int sentenceCount=0;
-  List<String> paragraph;
+  List<String> paragraphs;
   
   if (!file.existsSync()) {
     stdout.writeln("file doesn't exist");
 
-  } else {
+  } 
+  else {
     stdout.writeln("file exist\n\n");
     var text = file.readAsStringSync();
 
@@ -20,11 +22,12 @@ void mains(){
     }
     else{
 
-      paragraph = text.split("\n");
+      paragraphs = text.split("\n");
+      for (var paragraph in paragraphs) {
+       
+        List<String> sentence = paragraph.split(RegExp(r'[.!?]+'));
+        sentence.removeAt(sentence.length-1) ;
 
-      for (var paragraph in paragraph) {
-        
-        List<String> sentence = paragraph.split(r'[.!?]+');
         sentenceCount+=sentence.length;
 
         for (var sentence in sentence) {
@@ -34,22 +37,9 @@ void mains(){
 
       print('Number of words: $wordCount');
       print('Number of sentences: $sentenceCount');
-      print('Number of paragraph: ${paragraph.length+1}');
+      print('Number of paragraph: ${paragraphs.length}');
       
     }
   }
 
-
-}
-
-
-void main(){
-  String path = "./text.txt";
-  File file =File(path);
-  var paragraph = file.readAsStringSync().split('\n');
-
-
-  List<String> sentence = paragraph[0].split(r'[.!?]+');
-
-  print(paragraph);
 }
